@@ -5,5 +5,10 @@ services:
 
 script:
   - docker build -t matthijsbos/nerdrage-dev .
+  # test installed commands
+  - docker run --rm matthijsbos/nerdrage-dev git --version
+  - docker run --rm matthijsbos/nerdrage-dev ansible --version
+
+after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push matthijsbos/nerdrage-dev
