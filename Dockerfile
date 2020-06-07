@@ -3,6 +3,7 @@ FROM ubuntu:focal
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get -y install --no-install-recommends software-properties-common \
+   && apt-get -y install --no-install-recommends git-all \
    && apt-get -y install --no-install-recommends ansible \
    # Clean up
    && apt-get autoremove -y \
