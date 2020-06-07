@@ -5,9 +5,5 @@ services:
 
 script:
   - docker build -t matthijsbos/nerdrage-dev .
-
-deploy: 
-  provider: script
-  script: |
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    && docker push matthijsbos/nerdrage-dev
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push matthijsbos/nerdrage-dev
