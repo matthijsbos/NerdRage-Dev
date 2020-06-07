@@ -6,6 +6,7 @@ RUN apt-get update \
          git-all \
          ansible \
          openssh-client \
+         sshpass \
          less \
          iproute2 \
          procps \
