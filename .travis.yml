@@ -6,6 +6,8 @@ services:
 script:
   - docker build -t matthijsbos/nerdrage-dev .
   # test installed commands
+  - docker run --rm matthijsbos/nerdrage-dev python3 --version
+  - docker run --rm matthijsbos/nerdrage-dev pip3 --version
   - docker run --rm matthijsbos/nerdrage-dev git --version
   - docker run --rm matthijsbos/nerdrage-dev ansible --version
 
