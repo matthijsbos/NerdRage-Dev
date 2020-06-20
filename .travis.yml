@@ -4,13 +4,13 @@ services:
   - docker
 
 script:
-  - docker build -t matthijsbos/nerdrage-dev .
+  - docker build -t matthijsbos/nerdrage-dev:latest .
   # test installed commands
-  - docker run --rm matthijsbos/nerdrage-dev python3 --version
-  - docker run --rm matthijsbos/nerdrage-dev pip3 --version
-  - docker run --rm matthijsbos/nerdrage-dev git --version
-  - docker run --rm matthijsbos/nerdrage-dev ansible --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest python3 --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest pip3 --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest git --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest ansible --version
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push matthijsbos/nerdrage-dev
+  - docker push matthijsbos/nerdrage-dev:latest
