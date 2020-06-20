@@ -30,6 +30,8 @@ RUN apt-get update \
          libstdc++6 \
          zlib1g \
          locales \
+         python3 \
+         python3-pip \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \
