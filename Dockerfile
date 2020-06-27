@@ -1,4 +1,4 @@
-FROM ubuntu:focal
+FROM matthijsbos/nerdrage-base
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
