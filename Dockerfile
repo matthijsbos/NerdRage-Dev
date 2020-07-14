@@ -22,6 +22,7 @@ RUN apt-get update \
          apt-transport-https \
          dialog \
          gnupg \
+         gnupg2 \
          libc6 \
          libgcc1 \
          libgssapi-krb5-2 \
@@ -32,6 +33,19 @@ RUN apt-get update \
          locales \
          python3 \
          python3-pip \
+         iputils-ping \
+         net-tools \
+         dnsutils \
+   # Install Docker
+   # https://github.com/microsoft/vscode-dev-containers/tree/master/containers/docker-from-docker
+    && curl -fsSL https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]')/gpg | apt-key add - 2>/dev/null \
+    && echo "deb [arch=$(dpkg --print-architecture)] https://download.docker.com/linux/$(lsb_release -is | tr '[:upper:]' '[:lower:]') $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list \
+    && apt-get update \
+    && apt-get install -y docker-ce-cli \
+    # Install Docker Compose
+    && LATEST_COMPOSE_VERSION=$(curl -sSL "https://api.github.com/repos/docker/compose/releases/latest" | grep -o -P '(?<="tag_name": ").+(?=")') \
+    && curl -sSL "https://github.com/docker/compose/releases/download/${LATEST_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose \
+    && chmod +x /usr/local/bin/docker-compose \
    # Clean up
    && apt-get autoremove -y \
    && apt-get clean -y \
