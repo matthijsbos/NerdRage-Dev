@@ -10,6 +10,9 @@ script:
   - docker run --rm matthijsbos/nerdrage-dev:latest pip3 --version
   - docker run --rm matthijsbos/nerdrage-dev:latest git --version
   - docker run --rm matthijsbos/nerdrage-dev:latest ansible --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest docker --version
+  - docker run --rm matthijsbos/nerdrage-dev:latest docker-compose --version
+  - docker run --rm -v /var/run/docker.sock:/var/run/docker.sock matthijsbos/nerdrage-dev:latest docker info
 
 after_success:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
